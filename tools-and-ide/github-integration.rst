@@ -3,9 +3,12 @@
 GitHub Integration
 ==================
 
-.. note::
+.. warning::
 
-    GitHub IDE integration is only available in the US.
+    Before proceeding to enable GitHub integration in the IDE, be aware that:
+
+    1. GitHub IDE integration is not supported outside the US.
+    2. GitHub IDE integration may negatively impact the performance of the IDE. 
 
 As an open platform, we recognize that giving our community developers access to the repository housing our SmartApps and Device Handlers is extremely important.
 While you can browse the code in the IDE, not having access to the repository itself is limiting.
@@ -150,6 +153,10 @@ For Device Handlers:
 The namespace is typically your GitHub user name.
 When you create a SmartApp or device handler in the IDE, you provide a namespace, which is then populated in the definition method.
 This namespace will be used in the directory structure as shown above.
+
+.. important::
+
+    Note that the directory names must all be lowercase and must be consistent with the namespace and the name of the Device Handler or SmartApp. In other words, the directory names must all be lowercase with non-alphanumeric characters replaced with a dash. For example, if a SmartApp has the namespace "My Apps" and the name "My First App" then the path name for it must be ``smartapps/my-apps/my-first-app.src/my-first-app.groovy``.
 
 .. _github_ide_tour:
 

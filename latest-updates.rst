@@ -1,26 +1,67 @@
-========================
-Documentation Change Log
-========================
+.. _latest-updates:
 
-A log of changes to this documentation.
+==============
+Latest Updates
+==============
+
+January 23 2017
+---------------
+
+- Search, discover and communicate with the devices in your network with the ``HubAction`` class. Check out the :ref:`new reference document for HubAction <hubaction_ref>`.
+- If you need to get the account ID associated with an installed SmartApp, check out the :ref:`isa_ref_get_account_id` method available on the :ref:`installed_smart_app_wrapper` object!
+- We've updated the :ref:`editor_and_simulator` guide to clarify that you need to ensure you are on the correct shard when creating SmartApps or Device Handlers.
+- A new Capability, :ref:`infraredLevel`, is now available!
+
+`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/23-January-2017>`__
+
+----
+
+January 03 2017
+---------------
+
+- Thinking about setting up a regular on and off schedule for your SmartThings? See our latest update, with examples, in :ref:`schedule_using_cron`.
+- Confused about sharding and where to publish your SmartApp or Device Handler? Here is a big picture view that clarifies :ref:`Publishing Custom Code <publishing>`.
+- Did you know there's a default delay between commands when you send a sequence of them to the Hub? See :ref:`smartapp_sendhubcommand` reference documentation for details.
+
+`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/03-January-2017>`__
+
+----
+
+December 08 2016
+----------------
+
+- Quick, how do you know what Capabilities are supported by SmartThings? Checkout out the new generated :ref:`capabilities_taxonomy`, now live.
+- Don't know much about ZigBee? We got you covered with our updated ZigBee documentation in the :ref:`zigbee_primer` and :ref:`zigbee_ref` guides.
+- What you, as a developer, must know while working with the SmartThings IDE. Checkout latest in the :ref:`hubs-and-locations` guide.
+
+`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/08-December-2016>`__
+
+----
+
+November 30 2016
+----------------
+
+- Did you know you can refresh any page of the SmartApp on the mobile device with a set interval? See the :ref:`dynamic-page-options` guide.
+
+`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/30-November-2016>`__
 
 ----
 
 November 17 2016
 ----------------
 
-`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/17-November-2016>`__
-
 - Changed code blocks to use the monokai dark theme.
+
+`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/17-November-2016>`__
 
 ----
 
 November 15 2016
 ----------------
 
-`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/15-November-2016>`__
-
 - Added ability to copy code blocks to the clipboard.
+
+`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/15-November-2016>`__
 
 ----
 
@@ -134,7 +175,7 @@ September 23 2016
 `GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/23-September-2016>`__
 
 - Added link to the Z-Wave public spec on the following Z-Wave pages: :ref:`Building Z-Wave Device Handlers <zwave-device-handlers>` and :ref:`Z-Wave Primer <zwave-primer>`
-- Updated the :ref:`Color Control <color_control>` capability to correctly reflect the capability definition.
+- Updated the :ref:`Color Control <colorControl>` capability to correctly reflect the capability definition.
 - Updated Jinja template to add some more features for the ongoing generated capability documentation project.
 - Fixed minor grammatical errors.
 
@@ -183,7 +224,7 @@ September 02 2016
 - Typos and spelling fixes
 - Added more around the generated capabilities documentation framework
 - Added :ref:`web_services_smartapps_troubleshooting` document to the SmartApp Web Services guide
-- Fixed :ref:`color_control` example code in the capabilities reference
+- Fixed :ref:`colorControl` example code in the capabilities reference
 
 ----
 

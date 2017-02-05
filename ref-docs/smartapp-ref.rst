@@ -577,6 +577,21 @@ Returns a list of all child devices. An example use would be in service manager 
 
 ----
 
+.. _smartapp_getlocation:
+
+getLocation()
+-------------
+
+The :ref:`location_ref` into which this SmartApp has been installed.
+
+**Signature:**
+    ``Location getLocation()``
+
+**Returns:**
+    :ref:`location_ref` - The Location into which this SmartApp has been installed.
+
+----
+
 .. _smartapp_get_sunrise_and_sunset:
 
 getSunriseAndSunset()
@@ -907,7 +922,7 @@ If the response content type is JSON, the response data will automatically be pa
             resp.headers.each {
                 log.debug "${it.name} : ${it.value}"
             }
-            log.debug "response contentType: ${resp.    contentType}"
+            log.debug "response contentType: ${resp.contentType}"
         }
     } catch (e) {
         log.debug "something went wrong: $e"
@@ -1001,19 +1016,6 @@ If the response content type is JSON, the response data will automatically be pa
     =================== ==============
 
     `Closure`_ `closure` - The closure that will be called with the response of the request.
-
-----
-
-getLocation()
--------------
-
-The :ref:`location_ref` into which this SmartApp has been installed.
-
-**Signature:**
-    ``Location getLocation()``
-
-**Returns:**
-    :ref:`location_ref` - The Location into which this SmartApp has been installed.
 
 ----
 
@@ -1674,6 +1676,49 @@ Creates and sends an event constructed from the specified properties. If a devic
     // create and send event with additional data
     sendEvent(name: "myevent", value: "myvalue", data: [moreInfo: "more information", evenMoreInfo: 42])
 
+----
+
+.. _smartapp_sendhubcommand:
+
+sendHubCommand()
+----------------
+
+Sends a command to the Hub, with the details of the command encapsulated within a HubAction object.
+
+**Signature:**
+    ``void sendHubCommand(HubAction action)``
+
+    ``void sendHubCommand(List<HubAction> actions, delay)``
+
+**Parameters:**
+    ``HubAction action`` - A HubAction object 
+    
+    ``List<HubAction> actions`` - A list of HubAction objects 
+
+
+    ``delay`` - An integer number representing milliseconds. This is the delay between commands when a list of HubAction objects are sent using ``List<HubAction> actions`` parameter. The default value of delay is 1000.
+
+**Returns:**
+    void
+
+**Example:**
+    During the discovery phase of a LAN-connected device the following discovery command can be sent to the Hub.
+
+.. code-block:: groovy
+    
+    // Send a single HubAction command to the Hub
+    void ssdpDiscover() {
+        sendHubCommand(new physicalgraph.device.HubAction("lan discovery urn:schemas-upnp-org:device:ZonePlayer:1", physicalgraph.device.Protocol.LAN))
+    }
+    // Send a List of HubAction commands to the Hub with a delay of 3 seconds between each HubAction command
+    void sendMultiDevice() {
+        List actions = []
+        actions.add(new physicalgraph.device.HubAction("lan discovery urn:schemas-upnp-org:device:ZonePlayer:1", physicalgraph.device.Protocol.LAN))
+        actions.add(new physicalgraph.device.HubAction("lan discovery urn:schemas-upnp-org:device:MediaRenderer:1", physicalgraph.device.Protocol.LAN))
+        actions.add(new physicalgraph.device.HubAction("lan discovery urn:samsung.com:device:RemoteControlReceiver:1", physicalgraph.device.Protocol.LAN))
+        sendHubCommand(actions, 3000)
+    }
+    
 ----
 
 sendLocationEvent()

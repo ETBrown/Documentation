@@ -29,6 +29,12 @@ Contents
 --------
 
 .. toctree::
+   :caption: What's New
+   :maxdepth: 2
+
+   latest-updates
+     
+.. toctree::
    :caption: Getting Started
    :maxdepth: 2
 
@@ -51,6 +57,7 @@ Contents
    cloud-and-lan-connected-device-types-developers-guide/index
    arduino/index
    ratelimits/index
+   publishing/index
    code-review-guidelines
 
 .. toctree::
@@ -65,5 +72,4 @@ Contents
    :caption: Misc
 
    sept-2015-faq
-   docs-change-log
    contributing/index
