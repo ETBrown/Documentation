@@ -21,12 +21,12 @@ Broadly speaking, there are a few different ways we might want to schedule somet
 We'll look at each scenario in detail, and at the methods SmartThings makes available to address these requirements.
 
 .. note::
-    When using the scheduler APIs, the schedule will be created using the time zone of the SmartApp's location.
+    When using the scheduler APIs, the schedule will be created using the time zone of the SmartApp's Location.
 
 ----
 
-Schedule From Now - ``runIn()`` 
--------------------------------
+Schedule from now--``runIn()``
+------------------------------
 
 A SmartApp may want to take some action within a certain duration of time after some event has occurred.
 Consider a few examples:
@@ -38,7 +38,7 @@ Consider a few examples:
 All these scenarios follow a common pattern: when a certain event happens, take some action after a given duration of time.
 This can be accomplished this by using the :ref:`smartapp_run_in` method.
 
-The ``runIn()`` method executes a specified handler method after a given number of seconds have elapsed. 
+The ``runIn()`` method executes a specified handler method after a given number of seconds have elapsed.
 
 .. code-block:: groovy
     :emphasize-lines: 3
@@ -87,8 +87,8 @@ So, if you do specify ``[overwrite: false]``, be sure to write your handler so t
 
 ----
 
-Run Once in the Future - ``runOnce()``
---------------------------------------
+Run once in the future--``runOnce()``
+-------------------------------------
 
 Some SmartApps may need to schedule certain actions to happen *once* at a specific time and date. :ref:`smartapp_run_once` handles this case.
 
@@ -122,14 +122,16 @@ Like ``runIn()``, you can also specify the overwrite behavior of ``runOnce()``:
 
 ----
 
-Run on a Recurring Schedule - ``schedule()``
---------------------------------------------
+.. _scheduling_recurring_schedules:
+
+Run on a recurring schedule
+---------------------------
 
 Often, there is a need to schedule a job to run on a specific schedule.
 For example, maybe you want to turn the lights off at 11 PM every night.
 Or, you might need to execute a certain action every X minutes.
 
-SmartThings provides the :ref:`smartapp_schedule` method to allow you to create recurring schedules.
+SmartThings provides the :ref:`smartapp_schedule` and various ``runEvery*()`` methods to allow you to create recurring schedules.
 
 The various ``schedule()`` methods follow a similar form - they take an argument representing the desired schedule, and the method to be called on this schedule.
 
@@ -137,7 +139,7 @@ The various ``schedule()`` methods follow a similar form - they take an argument
 
     If a method is already scheduled, and later you call ``schedule()`` with that method, then that method will be executed as per the new schedule.
 
-Schedule Once Per Day
+Schedule once per day
 ^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``schedule()`` method to execute a handler method every day at a certain time:
@@ -180,12 +182,55 @@ Finally, you can pass a Long representing the desired time in milliseconds (usin
         ...
     }
 
+.. _schedule_run_every:
+
+Schedule every X minutes or hours
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For common recurring schedules, SmartThings provides a few convenience APIs that we can use.
+
+These methods work by creating a random start time in X minutes or hours, and then every X minutes or hours after that.
+For example, ``runEvery5Minutes(handlerMethod)`` will execute ``handlerMethod()`` at a random time in the next five minutes, and then run every five minutes from then.
+
+These methods have the advantage of randomizing the start time for schedules, which reduces the load on the SmartThings scheduler, and results in better performance for end users.
+As such, these methods should be preferred over cron expressions when available.
+
+The currently available methods are:
+
+- :ref:`smartapp_run_every_1_minute`
+- :ref:`smartapp_run_every_5_minutes`
+- :ref:`smartapp_run_every_10_minutes`
+- :ref:`smartapp_run_every_15_minutes`
+- :ref:`smartapp_run_every_30_minutes`
+- :ref:`smartapp_run_every_1_hours`
+- :ref:`smartapp_run_every_3_hours`
+
+Using these methods is similar to other scheduling methods:
+
+.. code-block:: groovy
+    :emphasize-lines: 2
+
+    def initialize() {
+        runEvery5Minutes(handlerMethod)
+    }
+
+    def handlerMethod() {
+        log.debug "handlerMethod called at ${new Date()}"
+    }
+
+----
+
 .. _schedule_using_cron:
 
-Schedule Using Cron
+Schedule using cron
 ^^^^^^^^^^^^^^^^^^^
 
-Scheduling jobs to execute at a particular time is useful, but what if, for example, we want a method to execute at fifteen minutes past the hour, every hour? 
+.. important::
+
+    Prefer the ``runEvery*()`` methods to creating your own cron schedule when possible.
+    These methods are documented above in the :ref:`schedule_run_every` section.
+
+Scheduling jobs to execute at a particular time is useful, but what if, for example, we want a method to execute at fifteen minutes past the hour, every hour?
 SmartThings allows you to pass a cron expression to the ``schedule()`` method to accomplish this.
 
 .. code-block:: groovy
@@ -201,14 +246,14 @@ SmartThings allows you to pass a cron expression to the ``schedule()`` method to
     }
 
 A cron expression is a way to specify a recurring schedule, based on the UNIX cron tool.
-The cron expression supported by SmartThings is a string of six or seven fields, separated by white space. 
+The cron expression supported by SmartThings is a string of six or seven fields, separated by white space.
 The *seconds* field is the left most field.
-The below table describes these fields. 
+The below table describes these fields.
 
 ============ ================ ======== =================
 Field        Allowed Values   Required Allowed Wildcards
 ============ ================ ======== =================
-Seconds      0-59             Yes      \*  
+Seconds      0-59             Yes      \*
 Minutes      0-59             Yes      , - * /
 Hours        0-23             Yes      , - * /
 Day of Month 1-31             Yes      , - * ? / L W
@@ -217,7 +262,7 @@ Day of Week  1-7 or SUN-SAT   Yes      , - * ? / L
 Year         empty, 1970-2099 No       , - * /
 ============ ================ ======== =================
 
-**Allowed Wildcards**
+**Allowed wildcards are:**
 
     - ``,`` (comma) is used to specify additional values. For example, SAT,SUN,MON in the Day of Week field means “the days Saturday, Sunday, and Monday.”
     - ``-`` (hyphen) is used to specify ranges. For example, ``5-7`` in the Hours field means “the hours 5, 6 and 7”.
@@ -229,10 +274,10 @@ Year         empty, 1970-2099 No       , - * /
 
 .. warning::
 
-    You cannot specify both the *Day of Month* and the *Day of Week* fields in the same cron expression. 
+    You cannot specify both the *Day of Month* and the *Day of Week* fields in the same cron expression.
     If you specifiy one of these fields, the other one must be ``?``.
 
-Here is an example with the two fields, i.e., the *Day of Month* and the *Day of Week*. 
+Here is an example with the two fields, i.e., the *Day of Month* and the *Day of Week*.
 In the table below cases A and C are invalid.
 
 ====== ============ =========== ====================================================
@@ -269,54 +314,20 @@ Expression Description                        Description
 
 .. warning::
 
-    Note how you use ``*`` as it may unwittingly lead to high-frequency schedules. 
-    You may have intended to use ``?``. 
-    Note the difference between ``*``, which means "every" and ``?``, which means "any". 
+    Note how you use ``*`` as it may unwittingly lead to high-frequency schedules.
+    You may have intended to use ``?``.
+    Note the difference between ``*``, which means "every" and ``?``, which means "any".
 
     For example, ``* */5 * * * ?`` means every 5th minute, run 60 times within that minute.
     That's almost surely not what you want, and SmartThings will not execute your schedule that frequently (see below).
 
     If you were trying to execute every X minutes, it would look like this: ``0 0/X * * * ?`` where X is the minute value.
 
-Schedule Every X Minutes or Hours
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For common recurring schedules, SmartThings provides a few convenience APIs that we can use.
-These methods use cron under the hood, but nevertheless will save you the effort of writing up the expressions themselves.
-
-These methods work by creating a random start time in X minutes or hours, and then every X minutes or hours after that.
-For example, ``runEvery5Minutes(handlerMethod)`` will execute ``handlerMethod()`` at a random time in the next five minutes, and then run every five minutes from then.
-
-These methods have the advantage of randomizing the start time for schedules, which can reduce the load on the SmartThings cloud.
-As such, these methods should be preferred over cron expressions when available.
-
-The currently available methods are:
-
-- :ref:`smartapp_run_every_5_minutes`
-- :ref:`smartapp_run_every_10_minutes`
-- :ref:`smartapp_run_every_15_minutes`
-- :ref:`smartapp_run_every_30_minutes`
-- :ref:`smartapp_run_every_1_hours`
-- :ref:`smartapp_run_every_3_hours`
-
-Using these methods is similar to other scheduling methods:
-
-.. code-block:: groovy
-    :emphasize-lines: 2
-
-    def initialize() {
-        runEvery5Minutes(handlerMethod)
-    }
-
-    def handlerMethod() {
-        log.debug "handlerMethod called at ${new Date()}"
-    }
+.. _scheduling_passing_data:
 
 ----
 
-.. _scheduling_passing_data:
-
-Passing Data to the Handler Method
+Passing data to the handler method
 ----------------------------------
 
 Sometimes it is useful to pass data to the handler method.
@@ -355,7 +366,7 @@ If this limit is exceeded, a ``physicalgraph.exception.DataCharacterLimitExceede
 
 ----
 
-Removing Scheduled Executions
+Removing scheduled executions
 -----------------------------
 
 You can remove scheduled executions using the :ref:`smartapp_unschedule` method:
@@ -392,7 +403,7 @@ You can also call ``unschedule()`` with no arguments to remove all schedules:
 
 ----
 
-Viewing Schedules in the IDE
+Viewing schedules in the IDE
 ----------------------------
 
 You can view schedules for any installed SmartApp in the IDE.
@@ -423,14 +434,14 @@ You can also view the SmartApp job history, which shows the previous executions 
 
 .. _limitations_best_practices:
 
-Scheduling Limitations and Best Practices 
------------------------------------------
+Best practices
+--------------
 
 When using any of the scheduling APIs, it's important to understand some limitations and best practices.
 
 .. _scheduling_chained_run_in:
 
-Avoid Chained ``runIn()`` Calls
+Avoid chained ``runIn()`` calls
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use ``runIn()`` to schedule one-time executions, not recurring schedules.
@@ -462,22 +473,26 @@ If you need a recurring schedule, use cron.
     Using a chained ``runIn()`` pattern can be acceptable for certain short-running tasks, such as gradually dimming a bulb.
     But for anything long-running, use cron.
 
+Prefer `runEvery*()` over cron
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Execution Time May Not Be in Exact Seconds
+Use any of the :ref:`runEvery*() <schedule_run_every>` methods instead of creating your own cron schedule when possible.
+
+Execution time may not be in exact seconds
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 SmartThings will try to execute your scheduled job at the specified time, but cannot guarantee it will execute at that exact moment.
 As a general rule of thumb, you should expect that your job will be called within the minute of scheduled execution.
 For example, if you schedule a job at 5:30:20 (20 seconds past 5:30) to execute in five minutes, we expect it to be executed at some point in the 5:35 minute.
 
-Do Not Aggressively Schedule
+Do not aggressively schedule
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Every scheduled execution incurs a cost to launch the SmartApp, and counts against the :ref:`rate_limits`.
 While there are some limitations in place to prevent excessive scheduling, it's important to note that excessive polling or scheduling is discouraged.
 It is one of the items we look for when reviewing community-developed SmartApps or device-type handlers.
 
-``unschedule()`` is Expensive
+``unschedule()`` is expensive
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As discussed above, ``unschedule()`` is currently a potentially expensive operation.
@@ -486,7 +501,7 @@ We plan to address this in the near future. Until we do, be aware of the potenti
 
 Note that when the SmartApp is uninstalled, all scheduled executions are removed - there is no need to call ``unschedule()`` in the ``uninstalled()`` method.
 
-Number of Scheduled Executions Limit
+Number of scheduled executions limit
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The :ref:`smartapp_can_schedule` method returns false if four or more scheduled executions are created.

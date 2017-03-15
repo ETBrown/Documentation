@@ -1,9 +1,9 @@
 .. _smartapp-time-methods:
 
-Working with Time
+Working With Time
 =================
 
-Monitoring the home and triggering events based on what is detected often entails asking the question: "Is it the right time?" and then based on the answer, perform "Do this, or not," actions.
+Monitoring the home and triggering Events based on what is detected often entails asking the question: "Is it the right time?" and then based on the answer, perform "Do this, or not," actions.
 For example, a SmartApp can turn on a room light when a door is opened but only during certain hours, or wake up the house in the morning at different times based on what day of the week it is.
 
 Time methods can be used in a SmartApp to accomplish such automations.
@@ -12,7 +12,7 @@ These time methods support a variety of time-related queries such as get the cur
 
 .. smartapp_taking-action_in_a_time_window:
 
-Taking Action Within a Time Window
+Taking action within a time window
 ----------------------------------
 
 A common automation with SmartThings is to turn on a room light when the door is opened between certain hours, and do not turn on the light during other times.
@@ -38,7 +38,7 @@ With the ``fromTime`` and ``toTime`` inputs the user will set up the preferred t
 
 
 Next, we begin watching the door by creating the ``contactHandler`` event handler and have it subscribe to the ``contact.open`` attribute of the ``openCloseSensor`` contact sensor.
-This enables the ``contactHandler`` event handler to be sensitive only to the ``open`` event of the contact sensor, i.e, when the door is opened.
+This enables the ``contactHandler`` event handler to be sensitive only to the ``open`` Event of the contact sensor, i.e, when the door is opened.
 
 .. code-block:: groovy
 
@@ -84,7 +84,7 @@ fromTime      toTime        new Date()   between
 
 .. smartapp_execute_on_certain_days:
 
-Execute Only On Certain Days
+Execute only on certain days
 ----------------------------
 
 A natural extension to the above automation of taking action within a time window is taking action only within a time window on *selected* days of the week.
@@ -135,7 +135,7 @@ Next, we make modifications to the ``contactHandler`` event handler so that it c
 
 .. _smartapp_timezones:
 
-Working With Time Zones
+Working with time zones
 -----------------------
 
 Often we may want to set or adjust the SmartApp automation settings while we are traveling, in which case the time zone of the hub may differ from the time zone of the mobile app (our current travel location).

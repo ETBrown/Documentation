@@ -41,7 +41,7 @@ If there is no match, validation will fail with the following error:
 
     error="invalid_grant", error_description="Invalid redirect: http://myserverhostname.com/oauth/callback does not match one of the registered values: [http://myserverhostname1.com/oauth/callback]"
 
-You can also set the Client Display Name and Client Display Link.
+You can also set the *Client Display Name* and *Client Display Link.*
 These will be used on the SmartThings Authorization page to inform the user who is requesting access to their devices.
 
 .. image:: ../img/smartapps/web-services/oauth-settings.png
@@ -133,7 +133,7 @@ The ``oauthPage`` must be a static (non-dynamic) page, and be the first page dis
 
 .. _web_services_mapping_endpoints:
 
-Mapping Endpoints
+Mapping endpoints
 -----------------
 
 To expose a callable endpoint in your SmartApp, use ``mappings``.
@@ -180,7 +180,7 @@ You can specify variable URL path parameters using the ``:`` prefix in the path:
 
 .. _webservices_smartapp_request_handling:
 
-Request Handling
+Request handling
 ----------------
 
 When a request is made to one of the SmartApp's endpoints, its associated request handler method will be called.
@@ -266,7 +266,7 @@ Similarly, the XML on ``request`` is the result of calling ``new XmlSlurper().pa
 
 .. _smartapp_web_services_response:
 
-Response Handling
+Response handling
 -----------------
 
 Defaults
@@ -378,7 +378,7 @@ If not specified, the ``contentType`` will be "application/json", and the ``stat
 
 ----
 
-Error Handling
+Error handling
 --------------
 
 Default errors

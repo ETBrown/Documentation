@@ -4,6 +4,51 @@
 Latest Updates
 ==============
 
+March 08 2017
+-------------
+
+- Do you have custom LAN device integrations? If so, check out the :ref:`automatic_LAN_device_discovery` documentation to see what (if any) impact this has on your custom code.
+
+`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/08-March-2017>`__
+
+----
+
+March 02 2017
+-------------
+
+- Does your SmartApp or Device Handler need to execute every minute? Instead of writing your own cron expression, use the new :ref:`smartapp_run_every_1_minute`!
+- Need to convert color values between hexadecimal and RGB? The :ref:`color_util_ref` class has what you need.
+- If you are writing a parent-child SmartApp, check out the :ref:`expanded and clarified documentation <parent_child_smartapp_parent>` for using the ``app()`` input type.
+- A new capability, :ref:`bridge`, allows devices to declare they act as a bridge to other devices.
+- A new attribute, ``held``, has been added to the :ref:`button` capability!
+- The :ref:`style_guide` has been updated with guidelines for document title and headings capitalization and formatting. If you are a contributor to these docs, make sure you check it out!
+
+`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/02-March-2017>`__
+
+----
+
+February 10 2017
+----------------
+
+- Did you notice? We've updated the :ref:`docs homepage <docs_home_page>` to help readers quickly identify and navigate to common areas of interest.
+
+`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/10-February-2017>`__
+
+----
+
+February 08 2017
+----------------
+
+- Z-Wave fingerprinting updates! The :ref:`zwave-fingerprinting` documentation has been expanded and updated with the latest information.
+- Get information about a Device's status and last activity using the new :ref:`device_get_status` and :ref:`device_get_last_activity` methods.
+- New to Device Handler development, or looking for a refresher? We've overhauled our :ref:`device-handler-quickstart` to ensure you can get up and running quickly and pain-free.
+- Do you use cron to create recurring schedules? Have you seen if you could replace that often-difficult to understand, write, and maintain cron expression with any of our :ref:`runEvery* <schedule_run_every>` methods? We've updated the :ref:`documentation <scheduling_recurring_schedules>` to highlight these methods and encourage their use, instead of using cron.
+- Did you know you can copy code examples right to your clipboard? We updated the UX to increase the visibility of this handy feature.
+
+`GitHub Release Tag <https://github.com/SmartThingsCommunity/Documentation/releases/tag/08-February-2017>`__
+
+----
+
 January 23 2017
 ---------------
 
@@ -165,7 +210,7 @@ October 05 2016
 - Updated the repository's README with pull request guidelines.
 - Added scheduling APIs to the :ref:`device_handler_ref` reference documentation (including all ``runEvery*`` APIs, which are now supported in Device Handlers).
 - Fixed broken cron tutorial link the :ref:`smartapp-scheduling` guide.
-- Added note to the :ref:`first SmartApp tutorial <first-smartapp-tutorial>` and :ref:`editor_and_simulator` that the simulator is inconsistent with the mobile application.
+- Added note to the :ref:`first SmartApp tutorial <first-smartapp-tutorial>` and :ref:`editor_and_simulator` that the Simulator is inconsistent with the mobile application.
 
 ----
 
@@ -307,7 +352,7 @@ July 07 2016
 - Added documentation for :doc:`ref-docs/app-state-ref`
 - Added documentation for :doc:`ref-docs/installed-smart-app-wrapper-ref`
 - Added :ref:`clarification <run_api_smartapp_simulator>` that the callable URL for Web Services SmartApps will vary by installed location
-- Updated :ref:`developer_discussions` with the new developer call schedule
+- Updated developer call schedule
 
 ----
 

@@ -1,7 +1,7 @@
 .. _smartapp_as_web_service_part_2:
 
-Web Services SmartApp Tutorial - Authorization Flow
-===================================================
+Web Services SmartApp Tutorial--Authorization Flow
+==================================================
 
 In `Part 1 <./tutorial-part1.html>`__ of this tutorial, you learned how to create a simple Web Services SmartApp, and install it in the IDE simulator, and make web requests to it.
 
@@ -42,7 +42,7 @@ Visit the `Ruby <http://ruby-lang.org>`__ website to install Ruby, and the `Sina
 
 ----
 
-Bootstrap the Sinatra App
+Bootstrap the Sinatra app
 -------------------------
 
 Create a new directory for the Sinatra app, and change directories to it:
@@ -142,7 +142,7 @@ Now, run the app on your local machine::
     ruby server.rb
 
 Visit `http://localhost:4567 <http://localhost:4567>`__.
-You should see a pretty boring web page with a link to "Connect with SmartThings".
+You should see a page with a link to "Connect with SmartThings".
 
 We're using the `OAuth2 module <https://github.com/intridea/oauth2>`__ to handle the OAuth2 flow.
 We create a new ``client`` object, using the ``client_id`` and ``client_secret``.
@@ -152,7 +152,7 @@ We've handled the root URL to simply display a link that points to the ``/author
 
 ----
 
-Get an Authorization Code
+Get an authorization code
 -------------------------
 
 When the user clicks on the "Connect with SmartThings" link, we need to get our OAuth authorization code.
@@ -165,8 +165,8 @@ This will be used (along with the ``client_id`` and ``client_secret``), to get t
 
 .. important::
 
-    When you self-publish a SmartApp, it is published and available in the location that you published it.
-    Since SmartThings is moving into the global space, the location that you published your SmartApp corresponds to a specific server.
+    When you self-publish a SmartApp, it is published and available in the Location that you published it.
+    Since SmartThings is moving into the global space, the Location that you published your SmartApp corresponds to a specific server.
     This means your self-published SmartApp is only available on that server.
 
 
@@ -191,13 +191,13 @@ It should look something like this:
 
 .. figure:: ../img/smartapps/web-services/preferences.png
 
-Click the Authorize button, and you will be redirected back your server.
+Click the *Authorize* button, and you will be redirected back your server.
 
 You'll notice that we haven't implemented handling this URL yet, so we see "Not Implemented!".
 
 ----
 
-Get an Access Token
+Get an access token
 -------------------
 
 When SmartThings redirects back to our application after authorizing, it passes a ``code`` parameter on the URL.
@@ -248,7 +248,7 @@ Once authorized, you should be redirected to the ``/getswitch`` URL. We'll start
 
 ----
 
-Discover the Endpoint
+Discover the endpoint
 ---------------------
 
 Now that we have the OAuth token, we can use it to discover the endpoint of our WebServices SmartApp.
@@ -301,10 +301,10 @@ You should then see the JSON response and endpoint displayed on your page.
 
 ----
 
-Make API Calls
+Make API calls
 --------------
 
-Now that we have our token and endpoint, we can (gasp!) make API calls to our SmartApp!
+Now that we have our token and endpoint, we can make API calls to our SmartApp.
 
 As you may have guessed by the URL path, we're just going to display the name of the switch, and it's current status (on or off).
 

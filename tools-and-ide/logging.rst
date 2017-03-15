@@ -11,13 +11,13 @@ This is very useful for debugging purposes.
 Overview
 --------
 
-There is an instance of a logger (``log``) injected into each SmartApp/Device Handler available for your use.
+There is an instance of a logger (``log``) injected into each SmartApp and Device Handler available for your use.
 SmartThings does not currently support a line-by-line, step-through debugger tool; instead, we use logging to debug our custom code.
 To view the logs, organized by app, click on the *Live Logging* link at the top of the IDE.
 
 ----
 
-Logging Levels
+Logging levels
 --------------
 
 The log instance currently supports these log levels, in decreasing order of severity:
@@ -37,7 +37,7 @@ TRACE ``log.trace(String, Throwable = null)`` Most detailed information.
 
 .. _logging_exceptions:
 
-Logging Exceptions
+Logging exceptions
 ------------------
 
 All log methods accept a second, optional parameter of type ``Throwable``.
@@ -66,7 +66,7 @@ Executing the above code would result in the following message in Live Logging:
 
 ----
 
-Logging Examples
+Logging examples
 ----------------
 
 Consider the following simple SmartApp which sets up some switch devices
@@ -112,7 +112,7 @@ we can see are messages like this:
 
 .. figure:: ../img/ide/log_example1.png
 
-It is easy to see that the *debug* message came from the ``updated()`` method
+It is easy to see that the *debug* message came from the ``updated()`` method.
 
 .. code-block:: groovy
 

@@ -30,7 +30,7 @@ Some tiles are display-only, while others allow the user to interact with the ti
 
 ----
 
-Tiles Basics
+Tiles basics
 ------------
 
 .. tip::
@@ -157,7 +157,7 @@ We can specify the ``canChangeIcon: true`` option to allow the user to select an
 If not specified, ``canChangeIcon`` is assumed to be false.
 Only the tile specified as the main tile should specify ``canChangeIcon``.
 
-Tiles and Attribute State
+Tiles and Attribute state
 -------------------------
 
 Tiles display data about a device's attributes, and may allow those attributes to be updated through user interaction.
@@ -188,7 +188,7 @@ For attributes whose value are not finite values (examples include "temperature"
         state "level", label: '${currentValue}'
     }
 
-(You can learn more about using dynamic state labels (``'${currentValue}'`` above) :ref:`here <state_labels>`.
+You can learn more about using dynamic state labels (``'${currentValue}'`` above) :ref:`here <state_labels>`.
 
 In the case of the "switch" attribute, we need to define two states, one for "on" and one for "off":
 
@@ -286,7 +286,7 @@ Here's an example of using the state name as the label:
         state "on", label:'${name}', action:"switch.off", icon:"st.switches.switch.on", backgroundColor:"#79b821"
     }
 
-When using the current attribute value, the attribute value must be set by sending an event.
+When using the current attribute value, the attribute value must be set by sending an Event.
 For simplicity, the code examples in this documentation typically will not show the attribute value being set.
 Just know that if a label is set like this:
 
@@ -297,7 +297,7 @@ Just know that if a label is set like this:
         state "power", label: '${currentValue} W'
     }
 
-The Device Handler needs to send an event for the ``"power"`` attribute somewhere:
+The Device Handler needs to send an Event for the ``"power"`` attribute somewhere:
 
 .. code-block:: groovy
 
@@ -657,7 +657,7 @@ As the name suggests, Multi-Attribute Tiles can be associated with more than one
 
 The key difference between the Multi-Attribute Tile ``tileAttribute`` and the single-attribute ``state`` is the ``key`` option for ``attributeState``.
 The key informs the platform the type of control for the tile attribute, which is then used to render the appropriate control.
-The keys commonly used for each type of tile will be discussed below, and a complete reference list is :ref:`also available <control_ref>`
+The keys commonly used for each type of tile will be discussed below, and a complete reference list is :ref:`also available <control_ref>`.
 
 Every Multi-Attribute Tile must specify a ``PRIMARY_CONTROL``.
 This is the main control, and will control the background color for the entire Multi-Attribute Tile (except for the :ref:`therm_multi_attr_tile`).
@@ -818,7 +818,7 @@ In order to provide the relevant data to present the label, there are four addit
 Value                 Description                                   Notes
 ====================  ============================================  ================================================================================================================
 ``OPERATING_STATE``   What the thermostat is doing                  The label will not show if ``OPERATING_STATE`` is omitted, as this is the baseline amount of meaningful information
-``THERMOSTAT_MODE``   Thermostat mode (i.e. Heat, Cool, or Auto)    This allows the user to know the mode (and temperature) if the system is idle (e.g. "Idle—Heat at 66°")
+``THERMOSTAT_MODE``   Thermostat Mode (i.e. Heat, Cool, or Auto)    This allows the user to know the Mode (and temperature) if the system is idle (e.g. "Idle—Heat at 66°")
 ``HEATING_SETPOINT``  At which point the system will begin heating  Informs the user when heating will start (or stop, if currently heating)
 ``COOLING_SETPOINT``  At which point the system will begin cooling  Informs the user when cooling will start (or stop, if currently cooling)
 ====================  ============================================  ================================================================================================================
@@ -887,7 +887,7 @@ The ``tileAttribute`` control keys and their description used for the Multimedia
 ===================  ===========
 Key                  Description
 ===================  ===========
-``PRIMARY_CONTROL``  Necessary to render the background of the tile.
+``PRIMARY_CONTROL``  Necessary to render the background of the tile
 ``MEDIA_STATUS``     Used to display and control the current play status (playing, paused, stopped)
 ``PREVIOUS_TRACK``   Renders a control for going to the previous track
 ``NEXT_TRACK``       Renders a control for going to the next track
@@ -1004,7 +1004,7 @@ Key                    Description
 
 .. _additional_info:
 
-Additional Information
+Additional information
 ----------------------
 
 - If using the ``SECONDARY_CONTROL``, ``SLIDER_CONTROL``, and ``COLOR_CONTROL`` controls in the same Multi-Attribute Tile, the values for the secondary and slider control will display as a Marquee on Android.

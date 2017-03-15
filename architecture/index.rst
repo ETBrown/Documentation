@@ -18,7 +18,7 @@ This allows you to develop an application for a type of device, regardless of th
 All of the code that developers can write on our platform is written in Groovy, which is a dynamic, object-oriented language built for the Java platform.
 You can learn more about Groovy on the :ref:`groovy-basics` page.
 
-Big Picture
+Big picture
 -----------
 
 .. TODO: I think we need a nicer looking picture. (Jesse O'Neill-Oine)
@@ -56,33 +56,33 @@ This allows for certain automations to continue, even without AC power.
 It also ships with USB ports and is Bluetooth Low Energy capable.
 While not active at launch, this allows for greater expansion in the future without requiring new hardware.
 
-Connectivity Management
+Connectivity management
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Connectivity Management is the layer that connects your SmartThings Hub, the client devices (mobile phones) to SmartThings servers and to the cloud as a whole.
 The Connectivity Management layer is comprised of:
 
--  Hub Connectivity that connects your hub to the cloud.
+-  Hub Connectivity that connects your Hub to the cloud.
 -  Client Connectivity that connects your client devices to the cloud.
 
 These are the highways by which your messages are sent to the internet.
 
-Device Handler Execution
+Device Handler execution
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 The SmartThings system determines what type of device you are using based on Device Handlers.
 Once the Device Handler is selected, the incoming messages are parsed by that particular Device Handler.
-The input to the Device Handler is a set of device-specific messages, and the output of the Device Handler is normalized SmartThings events.
-Note that one message can lead to many SmartThings events.
+The input to the Device Handler is a set of device-specific messages, and the output of the Device Handler is normalized SmartThings Events.
+Note that one message can lead to many SmartThings Events.
 
-Subscription Management
+Subscription management
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-When events are created in the SmartThings platform, they don't inherently do anything besides publish that they've happened.
-Instead of events triggering change, SmartApps are configured with subscriptions that listen for defined events.
-The purpose of the subscription management layer is to match up events that are triggered by the Device Handlers with the SmartApp that is using them.
+When Events are created in the SmartThings platform, they don't inherently do anything besides publish that they've happened.
+Instead of Events triggering change, SmartApps are configured with subscriptions that listen for defined Events.
+The purpose of the subscription management layer is to match up Events that are triggered by the Device Handlers with the SmartApp that is using them.
 
-SmartApp Execution
+SmartApp execution
 ^^^^^^^^^^^^^^^^^^
 
 The SmartApp is run when triggered either via subscriptions, or via external calls to SmartApp endpoints, or by scheduled methods.
@@ -92,16 +92,16 @@ Any data that needs to persist throughout SmartApp instances must be stored in a
 Web UI and IDE
 ^^^^^^^^^^^^^^
 
-The Web UI sits on top of all of the other technology and allows you to monitor your devices, hubs, locations and many other aspects of your SmartThings system.
+The Web UI sits on top of all of the other technology and allows you to monitor your devices, Hubs, Locations and many other aspects of your SmartThings system.
 
 You have full control of the configuration, including editing, adding, removing, and even creating SmartApps.
 To create, you write code within the IDE for SmartApps and Device Handlers.
-SmartThings also has an integrated simulator that allows you to simulate any devices, so it's not required to own the devices you develop for.
+SmartThings also has an integrated Simulator that allows you to simulate any devices, so it's not required to own the devices you develop for.
 
-Important Concepts
+Important concepts
 ------------------
 
-Asynchronous and Eventually Consistent Programming
+Asynchronous and eventually consistent programming
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When dealing with the physical graph, i.e., a digital representation of the physical things connected around us, there will always be a delay between when you request something to happen and when it actually happens.
@@ -117,7 +117,7 @@ This means that you execute a command, and assume it will turn on in due time, w
 You cannot be guaranteed that your command has been executed, because another SmartApp could interact with your end device, and change its state.
 For example, you might turn a light switch on, but another app might sneak in and turn it off.
 
-If you need to know if a command was executed, you can subscribe to an event triggered by the command you executed and check its timestamp to ensure it fired after you told it to.
+If you need to know if a command was executed, you can subscribe to an Event triggered by the command you executed and check its timestamp to ensure it fired after you told it to.
 You will, however, still have latency issues to take into consideration, so it's impossible to know the exact current status at any given time.
 
 The SmartApps platform follows eventually consistent programming, meaning that responses to a request for a value in SmartApps will eventually be the same, but in the short term they might differ.
@@ -126,7 +126,7 @@ Containers
 ^^^^^^^^^^
 
 Within the SmartThings platform, there are three different “containers” that are important concepts to understand.
-These are: *accounts, locations,* and *groups.*
+These are: *accounts, Locations,* and *groups.*
 These containers represent both security boundaries and navigation containers that make it easy for users to browse their devices.
 
 The diagram below shows the hierarchical relationship between these containers.
@@ -142,7 +142,7 @@ Accounts are the top-level container that represents the SmartThings ‘customer
 Accounts contain only Locations and no other types of
 objects.
 
-Locations and Users
+Locations and users
 ^^^^^^^^^^^^^^^^^^^
 
 Locations are meant to represent a geolocation such as “Home” or “Office”.
@@ -153,14 +153,14 @@ Finally, locations contain Groups or Devices.
 Groups
 ^^^^^^
 
-Groups are meant to represent a room or other physical space within a location.
+Groups are meant to represent a room or other physical space within a Location.
 This allows for devices to be organized into groups making navigation and security easier.
 A group can contain multiple devices, but devices can only be in a single group.
 Further, nesting of groups is not currently supported.
 
 ----
 
-Capability Taxonomy
+Capability taxonomy
 -------------------
 
 Capabilities represent the common taxonomy that allows SmartThings platform to link SmartApps with Device Handlers.
@@ -171,7 +171,7 @@ The :ref:`capabilities_taxonomy` is evolving and is heavily influenced by existi
 Capabilities themselves may be decomposed into both ‘Actions’ or ‘Commands’ (these are synonymous), and Attributes.
 Actions represent ways in which you can control or actuate the device, whereas Attributes represent state information or properties of the device.
 
-Attributes and Events
+Attributes and events
 ^^^^^^^^^^^^^^^^^^^^^
 
 Attributes represent the various properties or characteristics of a device.
@@ -187,19 +187,19 @@ A capability is supported by a specific set of commands.
 For example, the ‘Switch’ capability has two required commands: ‘On’ and ‘Off’.
 When a device supports a specific capability, it must generally support all of the commands required of that capability.
 
-Custom Capabilities
+Custom capabilities
 ^^^^^^^^^^^^^^^^^^^
 
 We do not currently support creating custom capabilities.
 You can, however, create a device-type handler that exposes custom commands or attributes.
 
-SmartThings Cloud
+SmartThings cloud
 -----------------
 
 The SmartThings platform assumes a "Cloud First” approach.
 This means that in order to use all supported devices and automations, and to ensure that the SmartThings mobile application reflects the correct state of your home, the SmartThings Hub will need to be online and be connected to the SmartThings cloud.
 
-The second generation of the hub, the Samsung SmartThings Hub, allows for some hub-local capabilities.
+The second generation Hub, the Samsung SmartThings Hub, allows for some Hub-local capabilities.
 Certain automations can execute even when disconnected from the SmartThings cloud.
 This allows SmartThings to improve performance and insulate the user from intermittent internet outages.
 
@@ -221,17 +221,17 @@ These devices may not be connected to a SmartThings Hub, and instead are directl
 
 Put simply, if there is no Hub, then the SmartApps layer must run in the cloud!
 
-**Scenario: SmartApps May Run Across both Cloud and Hub Connected Devices**
+**Scenario: SmartApps may run across both cloud- and Hub-connected devices**
 
-As a corollary to the first point above, since there are use cases where devices are not hub-connected, SmartApps might be installed to use one device that is hub-connected, and another device that is cloud-connected, all in the same app.
+As a corollary to the first point above, since there are use cases where devices are not Hub-connected, SmartApps might be installed to use one device that is Hub-connected, and another device that is Cloud-connected, all in the same app.
 In this case, the SmartApp needs to run in the cloud.
 
-**Scenario: There may be Multiple Hubs**
+**Scenario: There may be multiple Hubs**
 
 While the mesh network standards for ZigBee and Z-Wave generally eliminate the need for multiple SmartThings Hubs, we didn’t want to exclude this as a valid deployment configuration for large homes or even business applications of our technology.
-In the multi-hub case, SmartApps that use multiple devices that are split across hubs will run in the cloud in order to simplify the complexity of application deployment.
+In the multi-Hub case, SmartApps that use multiple devices that are split across hubs will run in the cloud in order to simplify the complexity of application deployment.
 
-**Scenario: External Service Integration**
+**Scenario: External service integration**
 
 SmartApps may call external web services.
 Calling them from SmartThings cloud reduces risk as it allows SmartThings to easily monitor for errors and ensure the security and privacy of the users.
@@ -255,27 +255,27 @@ Hubs and Locations
 ------------------
 
 To efficiently manage performance, the SmartThings platform scales its cloud server architecture horizontally with *sharding*.
-Sharding helps reduce the latency between the hub and the cloud, and handles increasing capacity.
+Sharding helps reduce the latency between the Hub and the cloud, and handles increasing capacity.
 As a developer you must note the impact of sharding on how you work with the SmartThings IDE.
 
-When you first install SmartThings app on your mobile phone, create your user account and claim your hub, the SmartThings platform automatically assigns your hub to the location and connects your location/hub to a particular shard.
+When you first install SmartThings app on your mobile phone, create your user account and claim your Hub, the SmartThings platform automatically assigns your Hub to the Location and connects your Location/Hub to a particular shard.
 Before starting your development, you must note that:
 
-- Your location/hub is connected to a *specific* SmartThings shard, based on the geographical location of the hub, and,
-- You must ensure that you are logged into the URL of this specific shard on IDE. Since the location is always connected to the correct shard URL, you can do this by clicking on your location from "My Locations" page after you log in.
+- Your Location/Hub is connected to a *specific* SmartThings shard, based on the geographical location of the Hub, and,
+- You must ensure that you are logged into the URL of this specific shard on IDE. Since the Location is always connected to the correct shard URL, you can do this by clicking on your Location from "My Locations" page after you log in.
 
 .. note::
 
-    If for some reason you are not seeing your hub in the IDE, then from *My Locations* page select the location and it will prompt you to log into correct shard where you can see your hub.
+    If for some reason you are not seeing your Hub in the IDE, then from *My Locations* page select the Location and it will prompt you to log into correct shard where you can see your Hub.
 
-Consequences of Sharding
+Consequences of sharding
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 In practice, some consequences of sharding are:
 
-- A global layer, with a few specific services, spans across all shards while all other services are owned by the specific shard itself (which, as emphasized above, is location-dependent). A few global layer services are: user account creation, authorization, OAuth authentication, mappings of location-to-shard, users-to-locations and hub-to-locations. All data that is down from the location level are managed by the specific shard.
+- A global layer, with a few specific services, spans across all shards while all other services are owned by the specific shard itself (which, as emphasized above, is Location-dependent). A few global layer services are: user account creation, authorization, OAuth authentication, mappings of Location-to-shard, users-to-Locations and Hub-to-Locations. All data that is down from the Location level are managed by the specific shard.
 - A shard does not share information with another shard. For example, a common login across the shards does not exist yet. You will have to log in to each shard, although the userid and password will be the same (see the note above). At the same time, note that SmartThings mobile app users do not have to log in again because mobile client OAuth tokens are shared across the shards.
-- SmartApps and Device Handlers are now published in a specific shard and not for your entire account. For example, if you have a hub in North America and another hub in Europe, you will need to publish your SmartApp twice, one in each location, i.e., shard.
-- Note that since a hub is assigned to a location, if you delete a location, the hub becomes unclaimed. Conversely, it is possible for a location to exist without a claimed hub at that location.
+- SmartApps and Device Handlers are now published in a specific shard and not for your entire account. For example, if you have a Hub in North America and another Hub in Europe, you will need to publish your SmartApp twice, one in each Location, i.e., shard.
+- Note that since a Hub is assigned to a Location, if you delete a Location, the Hub becomes unclaimed. Conversely, it is possible for a Location to exist without a claimed Hub at that Location.
 
 .. |Container Hierarchy| image:: ../img/architecture/overview.png

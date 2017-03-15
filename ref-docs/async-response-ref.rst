@@ -1,8 +1,8 @@
 .. _async_http_response_ref:
 
-=====================
-AsyncResponse (Beta!)
-=====================
+====================
+AsyncResponse (Beta)
+====================
 
 .. include:: ../common/async-http-beta-note.txt
 
@@ -40,7 +40,7 @@ Throws an exception if the request failed to get a response (e.g. Connection tim
 getErrorData()
 --------------
 
-In the event of an error response, returns the response body as a string.
+In the Event of an error response, returns the response body as a string.
 Throws an exception if the response is successful and has a 2XX response.
 
 **Signature:**
@@ -149,7 +149,7 @@ Get the headers of the response.
 
 **Returns:**
     `Map`_ < `String`_ , `String`_ > - A map of response headers keyed by the header name.
-    
+
 **Example:**
 
 .. code-block:: groovy
@@ -280,7 +280,7 @@ hasError()
 ----------
 
 Return if the request has an error of some sort.
-This will be ``true`` if the request succeeded with a 2XX response code, and ``false`` if the request failed to complete or returned a non-2XX status code.
+This will be ``true`` if the request failed to complete or returned a non-2XX status code, and ``false`` if the request succeeded with a 2XX status code.
 
 **Signature:**
     ``boolean hasError()``

@@ -23,7 +23,7 @@ Device objects cannot be instantiated, but are created by the SmartThings platfo
 
 .. note::
 
-    Event history is limited to the last seven days. Methods that query devices for event history will only query the last seven days. This will be called out in those methods, but is good to be generally aware of.
+    Event history is limited to the last seven days. Methods that query devices for Event history will only query the last seven days. This will be called out in those methods, but is good to be generally aware of.
 
 ----
 
@@ -281,7 +281,7 @@ Get a list of Events for the Device in reverse chronological order (newest first
     ======= ========== ===========
 
 **Returns:**
-    `List`_ <:ref:`event_ref`> - A list of events in reverse chronological order (newest first).
+    `List`_ <:ref:`event_ref`> - A list of Events in reverse chronological order (newest first).
 
 **Example:**
 
@@ -299,7 +299,7 @@ Get a list of Events between the specified start and end dates.
 
 .. note::
 
-    Only Events from the *last seven days* is query-able. Using a date range that ends more than seven days ago will return zero events.
+    Only Events from the *last seven days* is query-able. Using a date range that ends more than seven days ago will return zero Events.
 
 **Signature:**
     ``List<Event> eventsBetween(Date startDate, Date endDate [, Map options])``
@@ -345,7 +345,7 @@ Get a list of Events since the specified date.
 
 .. note::
 
-    Only Events from the *last seven days* is query-able. Using a date range that ends more than seven days ago will return zero events.
+    Only Events from the *last seven days* is query-able. Using a date range that ends more than seven days ago will return zero Events.
 
 **Signature:**
     ``List<Event> eventsSince(Date startDate [, Map options])``
@@ -464,16 +464,18 @@ The name of the Device set by the user in the mobile application or Web IDE.
 
 ----
 
+.. _device_get_last_activity:
+
 getLastActivity()
 -----------------
 
-The date of the last event with a source of ``device``. (i.e. not commands)
+The date of the last Event with a source of ``device``. (i.e. not commands)
 
 **Signature:**
     ``String getLastActivity()``
 
 **Returns:**
-    `Date`_ - Date of the last event with a source of ``device``.
+    `Date`_ - Date of the last Event with a source of ``device``.
 
 ----
 
@@ -540,6 +542,8 @@ Not applicable for cloud or LAN-connected devices (``null`` will be returned).
     }
 
 ----
+
+.. _device_get_status:
 
 getStatus()
 -----------
@@ -929,7 +933,7 @@ Get a list of Device :ref:`state_ref` objects for the specified attribute since 
         }
     }
     ...
-    def theStates = theswitch.statesBetween("switch", new Date() -3)
+    def theStates = theswitch.statesSince("switch", new Date() -3)
     log.debug "There are ${theStates.size()} State records in the last 3 days"
     ...
 

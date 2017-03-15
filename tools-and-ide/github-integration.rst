@@ -8,7 +8,7 @@ GitHub Integration
     Before proceeding to enable GitHub integration in the IDE, be aware that:
 
     1. GitHub IDE integration is not supported outside the US.
-    2. GitHub IDE integration may negatively impact the performance of the IDE. 
+    2. GitHub IDE integration may negatively impact the performance of the IDE.
 
 As an open platform, we recognize that giving our community developers access to the repository housing our SmartApps and Device Handlers is extremely important.
 While you can browse the code in the IDE, not having access to the repository itself is limiting.
@@ -135,12 +135,12 @@ You will now be able to commit changes made in the IDE to this repository, and u
 
 .. _github_repo_structure:
 
-Repository Structure
+Repository structure
 --------------------
 
 The repository is organized by type (SmartApps or Device Handlers) and namespace.
 
-Each SmartApp and Device Handler should be in its own directory, named the same as the SmartApp or device handler, and appended with ``".src"``.
+Each SmartApp and Device Handler should be in its own directory, named the same as the SmartApp or Device Handler, and appended with ``".src"``.
 
 For SmartApps:
 
@@ -151,7 +151,7 @@ For Device Handlers:
 ``devicetypes/<namespace>/<device-type-name>.src/<device handler file>.groovy``
 
 The namespace is typically your GitHub user name.
-When you create a SmartApp or device handler in the IDE, you provide a namespace, which is then populated in the definition method.
+When you create a SmartApp or Device Handler in the IDE, you provide a namespace, which is then populated in the definition method.
 This namespace will be used in the directory structure as shown above.
 
 .. important::
@@ -160,7 +160,7 @@ This namespace will be used in the directory structure as shown above.
 
 .. _github_ide_tour:
 
-GitHub Integration IDE Tour
+GitHub integration IDE tour
 ---------------------------
 
 Color-coded names
@@ -195,7 +195,7 @@ Black
     Both the IDE version and repository version have been updated, and are in need of a conflict resolution. To resolve this, you should click the Update from Repo button and follow the steps there (more information about the Update from Repo action can be found below).
 
 :brown:`Brown`
-    Indicates that the SmartApp or device handler is unattached to the repository version. Typically this happens when a new SmartApp or device handler is created from a template, and the name or namespace hasn't been changed. If you update from the repo without changing the name or namespace, the IDE version will be replaced with the repo version. Typically in this case you would change the name and namespace to be unique for your code.
+    Indicates that the SmartApp or Device Handler is unattached to the repository version. Typically this happens when a new SmartApp or Device Handler is created from a template, and the name or namespace hasn't been changed. If you update from the repo without changing the name or namespace, the IDE version will be replaced with the repo version. Typically in this case you would change the name and namespace to be unique for your code.
 
 GitHub actions buttons
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -207,12 +207,12 @@ When you enable GitHub integration, you will see a few buttons added to the My S
 Commit Changes
 ''''''''''''''
 
-Clicking the Commit Changes button will first prompt you to select what repository you want to commit to, and then launch a wizard allows you to commit any new or modified code to your forked repository. You can (and should) also add a commit message as you would normally do when making commits in Git.
+Clicking the *Commit Changes* button will first prompt you to select what repository you want to commit to, and then launch a wizard allows you to commit any new or modified code to your forked repository. You can (and should) also add a commit message as you would normally do when making commits in Git.
 
 Update from Repo
 ''''''''''''''''
 
-Clicking the Update from Repo button will first prompt you to select what repository you’d like to update from, and then launch a wizard that allows you to update your IDE code from your forked repository.
+Clicking the *Update from Repo* button will first prompt you to select what repository you’d like to update from, and then launch a wizard that allows you to update your IDE code from your forked repository.
 
 The wizard will display three columns, each of which is described below:
 
@@ -241,7 +241,7 @@ This is where you can find information about the repository and branch integrate
 
 .. _github_how_to:
 
-How-To
+How to
 ------
 
 Add files from repository to the IDE
@@ -249,11 +249,11 @@ Add files from repository to the IDE
 
 To add files from your forked SmartThingsPublic repository into the IDE, follow these steps:
 
-**Step 1 - Navigate to the *My SmartApps* or *My device handlers* page in the IDE**
+1. Step 1 - Navigate to the *My SmartApps* or *My Device Handlers* page in the IDE
 
-The files available to add to the IDE vary depending upon the context. If you want to add SmartApps to your IDE, navigate to the *My SmartApps* page. If you want to add device handlers, navigate to the *My device handlers*.
+The files available to add to the IDE vary depending upon the context. If you want to add SmartApps to your IDE, navigate to the *My SmartApps* page. If you want to add Device Handlers, navigate to the *My Device Handlers*.
 
-**Step 2 - Update from Repo**
+2. Step 2 - Update from Repo
 
 Click the *Update from Repo* button (above the list of SmartApps or device handlers), and select the repo you want to update from.
 
@@ -267,7 +267,7 @@ The IDE will now have the files you selected.
 
 .. _how_to_get_st_latest:
 
-Get Latest Code from SmartThingsPublic Repository
+Get latest code from SmartThingsPublic repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note::
@@ -306,10 +306,10 @@ In the resulting wizard, check the box next to any of the files you want to upda
 
 The files you chose to update are now updated in the IDE.
 
-Commit Changes in the IDE
+Commit changes in the IDE
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To commit changes to a SmartApp or device handler, whether it is a new file or already exists in the repository, Click on the *Commit Changes* button on the *My SmartApps* or *My device handlers* and select the repository you want to commit to.
+To commit changes to a SmartApp or Device Handler, whether it is a new file or already exists in the repository, Click on the *Commit Changes* button on the *My SmartApps* or *My device handlers* and select the repository you want to commit to.
 
 In the resulting wizard, check the box next to the file you want to commit, add a commit message, and press the *Commit Changes* button.
 
@@ -317,7 +317,7 @@ This will make a commit in your fork.
 
 .. _how_to_sync_clone:
 
-Keep Your Cloned Repo in Sync with Origin
+Keep your cloned repo in sync with origin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you cloned your forked repository to your local machine, you will want to keep it in sync with your remote forked repository in GitHub.
@@ -340,7 +340,7 @@ Type ``git merge origin/master`` (substitute ``master`` for a different branch, 
 
 .. _github_best_practices:
 
-Best Practices
+Best practices
 --------------
 
 Sync with upstream repository frequently
@@ -382,7 +382,7 @@ I think I found a bug. How do I report it?
 
 .. _github_integration_help:
 
-Getting Help
+Getting help
 ------------
 
 Here are some links for getting help working with Git and GitHub:

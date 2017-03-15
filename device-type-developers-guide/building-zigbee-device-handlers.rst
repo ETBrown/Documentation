@@ -114,9 +114,9 @@ Configure reporting instructs a device to notify us when an attribute changes an
     }
 
 In this example (using the "CentraLite Switch" Device Handler), the bind command is sent to the device using its Network ID which can be determined using ``0x${device.deviceNetworkId}``.
-Then using source and destination endpoints for the device and hub (1 1), we bind to the On/Off Clusters (6) to get events from the device.
-The last part of the message contains the hub's ZigBee id which is set as the location for the device to send callback messages to.
-Note that not at all devices support binding for events.
+Then using source and destination endpoints for the device and Hub (1 1), we bind to the On/Off Clusters (6) to get Events from the device.
+The last part of the message contains the Hub's ZigBee id which is set as the Location for the device to send callback messages to.
+Note that not at all devices support binding for Events.
 
 +-------------------------------+-----------------------------+
 | Component                     | Description                 |
@@ -136,21 +136,21 @@ Note that not at all devices support binding for events.
 
 ----
 
-ZigBee Utilities
+ZigBee utilities
 ----------------
 
 In order to work with ZigBee you will need to use the ZigBee Cluster Library extensively to look up the proper values to send back and forth to your device.
 You can download this document `here <http://www.zigbee.org/download/standards-zigbee-cluster-library/>`__.
 
-There is also a ZigBee utility class covered in the :ref:`zigbee_ref`
+There is also a ZigBee utility class covered in the :ref:`zigbee_ref`.
 
 ----
 
-Best Practices
+Best practices
 --------------
 
-- The use of 'raw ...' commands is deprecated. Instead use the documented methods on the zigbee library. If you need to do something that requires the use of a 'raw' command let us know and we will look at adding it to the zigbee library.
-- Do not use sendEvent() in command methods. Sending events should be handled in the parse method.
+- The use of 'raw ...' commands is deprecated. Instead use the documented methods on the ZigBee library. If you need to do something that requires the use of a 'raw' command let us know and we will look at adding it to the ZigBee library.
+- Do not use ``sendEvent()`` in command methods. Sending Events should be handled in the ``parse`` method.
 
 ----
 
@@ -183,7 +183,7 @@ Use it if
 How to use
 ^^^^^^^^^^
 
-Simply fill out the required fields in the form with the information for the device, and click Create.
+Simply fill out the required fields in the form with the information for the device, and click *Create.*
 
 You will then see the updated Device Handler code in the IDE editor.
 You can then test that your device pairs with SmartThings and functions as expected, and then make an update as a Publication Request.

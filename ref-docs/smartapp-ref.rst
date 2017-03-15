@@ -7,7 +7,7 @@ A SmartApp is a Groovy-based program that allows developers to create automation
 
 They are created through the "New SmartApp" action in the IDE. There is no "class" for a SmartApp per se, but there are various methods and properties available to SmartApps that are documented below.
 
-When a SmartApp executes, it executes in the context of a certain installation instance. That is, a user installs a SmartApp on their mobile application, and configures it with devices or rules unique to them. A SmartApp is not continuously running; it is executed in response to various schedules or subscribed-to events.
+When a SmartApp executes, it executes in the context of a certain installation instance. That is, a user installs a SmartApp on their mobile application, and configures it with devices or rules unique to them. A SmartApp is not continuously running; it is executed in response to various schedules or subscribed-to Events.
 
 ----
 
@@ -22,7 +22,7 @@ installed()
 
     This method is expected to be defined by SmartApps.
 
-Called when an instance of the app is installed. Typically subscribes to events from the configured devices and creates any scheduled jobs.
+Called when an instance of the app is installed. Typically subscribes to Events from the configured devices and creates any scheduled jobs.
 
 **Signature:**
     ``void installed()``
@@ -52,7 +52,7 @@ updated()
     This method is expected to be defined by SmartApps.
 
 
-Called when the preferences of an installed app are updated. Typically unsubscribes and re-subscribes to events from the configured devices and unschedules/reschedules jobs.
+Called when the preferences of an installed app are updated. Typically unsubscribes and re-subscribes to Events from the configured devices and unschedules/reschedules jobs.
 
 **Signature:**
     ``void uninstalled()``
@@ -242,7 +242,7 @@ Adds a child device to a SmartApp. An example use is in service manager SmartApp
 
     `String`_ ``deviceNetworkId`` - the device network id of the device
 
-    ``hubId`` - *(optional)* The hub id. Defaults to ``null``
+    ``hubId`` - *(optional)* The Hub id. Defaults to ``null``
 
     `Map`_ ``properties`` *(optional)* - A map with device properties.
 
@@ -323,6 +323,44 @@ Returns true if the SmartApp is able to schedule jobs. SmartApps are limited to 
 .. code-block:: groovy
 
     log.debug "Can schedule? ${canSchedule()}"
+
+----
+
+.. _smartapp_create_access_token:
+
+createAccessToken()
+-------------------
+
+Creates an access token for this installed SmartApp.
+This token is intended to be used by third-party services that need to communicate with SmartThings during the :ref:`OAuth installation flow of cloud-connected devices <cloud_service_manager_oauth>`.
+
+The created token will then be available in ``state.accessToken``.
+
+**Signature:**
+    ``def createAccessToken()``
+
+**Returns:**
+    May return the access token itself, though this is not guaranteed (the token will be available in ``state.accessToken``).
+
+    **Example:**
+
+    .. code-block:: groovy
+
+        // Check to see if SmartApp has its own access token and create one if not.
+        if(!state.accessToken) {
+            // the createAccessToken() method will store the access token in state.accessToken
+            createAccessToken()
+        }
+
+        // Use token to allow third-party to communicate with SmartApp during setup
+
+        // Revoke the token once the third-party no longer needs it (after setup)
+        revokeAccessToken()
+
+    **See also:**
+
+    - :ref:`cloud_connected_service_manager`
+    - :ref:`smartapp_revoke_access_token`
 
 ----
 
@@ -577,6 +615,21 @@ Returns a list of all child devices. An example use would be in service manager 
 
 ----
 
+.. _smartapp_ref_get_color_util:
+
+getColorUtil()
+--------------
+
+Returns the :ref:`color_util_ref` object.
+
+**Signature:**
+    ``ColorUtilities getColorUtil()``
+
+**Returns:**
+    :ref:`color_util_ref`
+
+----
+
 .. _smartapp_getlocation:
 
 getLocation()
@@ -612,9 +665,9 @@ Gets a map containing the local sunrise and sunset times.
         Option      Description
     ==============  ===========
     zipCode         | `String`_ - the zip code to use for determining the times.
-                    | If not specified then the coordinates of the hub location are used.
+                    | If not specified then the coordinates of the Hub location are used.
     locationString  | `String`_ - any location string supported by the Weather Underground APIs.
-                    | If not specified then the coordinates of the hub location are used
+                    | If not specified then the coordinates of the Hub Location are used
     sunriseOffset   | `String`_ - adjust the sunrise time by this amount.
                     | See `timeOffset()`_ for supported formats
     sunsetOffset    | `String`_ - adjust the sunset time by this amount.
@@ -635,7 +688,7 @@ Gets a map containing the local sunrise and sunset times.
     log.debug "sunrise with no parameters: ${noParams.sunrise}"
     log.debug "sunset with no parameters: ${noParams.sunset}"
     log.debug "sunrise and sunset in 90210: $beverlyHills"
-    log.debug "thirty minutes before sunset at current location: ${thirtyMinsBeforeSunset.sunset}"
+    log.debug "thirty minutes before sunset at current Location: ${thirtyMinsBeforeSunset.sunset}"
 
 ----
 
@@ -657,7 +710,7 @@ Calls the Weather Underground API to to return weather forecasts and related dat
     The weather feature to get. This corresponds to the available "Data Features" in the Weather Underground API.
 
     `String`_ ``location`` *(optional)*
-    The location to get the weather information for (ZIP code). If not specified, the location of the user's hub will be used.
+    The location to get the weather information for (ZIP code). If not specified, the Location of the user's Hub will be used.
 
 **Returns:**
     `Map`_ - a Map containing the weather information requested. The data returned will vary depending on the feature requested. See the Weather Underground API documentation for more information.
@@ -1112,7 +1165,7 @@ Parses the specified string into an XML data structure.
 parseLanMessage()
 -----------------
 
-Parses a Base64-encoded LAN message received from the hub into a map with header and body elements, as well as parsing the body into an XML document.
+Parses a Base64-encoded LAN message received from the Hub into a map with header and body elements, as well as parsing the body into an XML document.
 
 **Signature:**
     ``Map parseLanMessage(stringToParse)``
@@ -1136,7 +1189,7 @@ Parses a Base64-encoded LAN message received from the hub into a map with header
 parseSoapMessage()
 ------------------
 
-Parses a Base64-encoded LAN message received from the hub into a map with header and body elements, as well as parsing the body into an XML document. This method is commonly used to parse `UPNP SOAP <http://www.w3.org/TR/soap12-part1/>`__ messages.
+Parses a Base64-encoded LAN message received from the Hub into a map with header and body elements, as well as parsing the body into an XML document. This method is commonly used to parse `UPNP SOAP <http://www.w3.org/TR/soap12-part1/>`__ messages.
 
 **Signature:**
     ``Map parseLanMessage(stringToParse)``
@@ -1198,6 +1251,38 @@ Returns a HTTP response to the calling client with the options specified.
 
 ----
 
+.. _smartapp_revoke_access_token:
+
+revokeAccessToken()
+-------------------
+
+Revokes the access token created with :ref:`smartapp_create_access_token` for this installed SmartApp.
+
+**Signature:**
+    ``def revokeAccessToken()``
+
+**Example:**
+
+.. code-block:: groovy
+
+    // Check to see if SmartApp has its own access token and create one if not.
+    if(!state.accessToken) {
+        // the createAccessToken() method will store the access token in state.accessToken
+        createAccessToken()
+    }
+
+    // Use token to allow third-party to communicate with SmartApp during setup
+
+    // Revoke the token once the third-party no longer needs it (after setup)
+    revokeAccessToken()
+
+**See also:**
+
+- :ref:`cloud_connected_service_manager`
+- :ref:`smartapp_create_access_token`
+
+----
+
 .. _smartapp_run_in:
 
 runIn()
@@ -1242,6 +1327,52 @@ Executes a specified ``handlerMethod`` after ``delaySeconds`` have elapsed.
 
     def myOtherHandlerMethod(data) {
         log.debug "other handler method called with flag: $data.flag"
+    }
+
+----
+
+.. _smartapp_run_every_1_minute:
+
+runEvery1Minute()
+------------------
+
+Creates a recurring schedule that executes the specified ``handlerMethod`` every minute.
+Using this method will pick a random start time in the next minute, and run every minute after that.
+
+**Signature:**
+    ``void runEvery1Minute(handlerMethod[, options])``
+
+.. tip::
+
+    This is preferred over using ``schedule(cronExpression, handlerMethod)`` for a regular schedule like this because with a cron expression all installations of a SmartApp will execute at the same time. With this method, the executions will be spread out over the 1 minute period.
+
+**Parameters:**
+    ``handlerMethod`` - The method to call every minute. Can be the name of the method as a string, or a reference to the method.
+
+    ``options`` *(optional)* - A map of parameters, with the following keys supported:
+
+    ========= ====================== ===========
+    Key       Possible values        Description
+    ========= ====================== ===========
+    data      A map of data          A map of data that will be passed to the handler method.
+    ========= ====================== ===========
+
+**Returns:**
+    void
+
+**Example:**
+
+.. code-block:: groovy
+
+    runEvery1Minute(handlerMethod1)
+    runEvery1Minute(handlerMethod2, [data: [key1: 'val1']])
+
+    def handlerMethod1() {
+        log.debug "handlerMethod1"
+    }
+
+    def handlerMethod2(data) {
+        log.debug "handlerMethod2, data: $data"
     }
 
 ----
@@ -1628,11 +1759,11 @@ Creates a scheduled job that calls the ``handlerMethod`` once per day at the tim
 sendEvent()
 -----------
 
-Creates and sends an event constructed from the specified properties. If a device is specified, then a DEVICE event will be created, otherwise an APP event will be created.
+Creates and sends an Event constructed from the specified properties. If a device is specified, then a DEVICE Event will be created, otherwise an APP Event will be created.
 
 .. note::
 
-    SmartApps typically *respond to events*, not create them. In more rare cases, certain SmartApps or Service Manager SmartApps may have reason to send events themselves. ``sendEvent`` can be used for those cases.
+    SmartApps typically *respond to Events*, not create them. In more rare cases, certain SmartApps or Service Manager SmartApps may have reason to send Events themselves. ``sendEvent`` can be used for those cases.
 
 **Signature:**
     ``void sendEvent(Map properties)``
@@ -1640,28 +1771,28 @@ Creates and sends an event constructed from the specified properties. If a devic
     ``void sendEvent(Device device, Map properties)``
 
 **Parameters:**
-    `Map`_ ``properties`` - The properties of the event to create and send.
+    `Map`_ ``properties`` - The properties of the Event to create and send.
 
     Here are the available properties:
 
     =================    ===========
     Property             Description
     =================    ===========
-    name (required)      `String`_ - The name of the event. Typically corresponds to an attribute name of a capability.
-    value (required)     The value of the event. The value is stored as a string, but you can pass numbers or other objects.
-    descriptionText      `String`_ - The description of this event. This appears in the mobile application activity for the device. If not specified, this will be created using the event name and value.
-    displayed            Pass ``true`` to display this event in the mobile application activity feed, ``false`` to not display. Defaults to ``true``.
-    linkText             `String`_ - Name of the event to show in the mobile application activity feed.
-    isStateChange        ``true`` if this event caused a device attribute to change state. Typically not used, since it will be set automatically.
+    name (required)      `String`_ - The name of the Event. Typically corresponds to an attribute name of a capability.
+    value (required)     The value of the Event. The value is stored as a string, but you can pass numbers or other objects.
+    descriptionText      `String`_ - The description of this Event. This appears in the mobile application activity for the device. If not specified, this will be created using the Event name and value.
+    displayed            Pass ``true`` to display this Event in the mobile application activity feed, ``false`` to not display. Defaults to ``true``.
+    linkText             `String`_ - Name of the Event to show in the mobile application activity feed.
+    isStateChange        ``true`` if this Event caused a device attribute to change state. Typically not used, since it will be set automatically.
     unit                 `String`_ - a unit string, if desired. This will be used to create the ``descriptionText`` if it (the ``descriptionText`` option) is not specified.
-    :ref:`device_ref`    ``device`` - The device for which this event is created for.
-    data                 A map of additional information to store with the event
+    :ref:`device_ref`    ``device`` - The device for which this Event is created for.
+    data                 A map of additional information to store with the Event
     =================    ===========
 
 
 .. tip::
 
-    Not all event properties need to be specified. ID properties like ``deviceId`` and ``locationId`` are automatically set, as are properties like ``isStateChange``, ``displayed``, and ``linkText``.
+    Not all Event properties need to be specified. ID properties like ``deviceId`` and ``locationId`` are automatically set, as are properties like ``isStateChange``, ``displayed``, and ``linkText``.
 
 **Returns:**
     void
@@ -1691,9 +1822,9 @@ Sends a command to the Hub, with the details of the command encapsulated within 
     ``void sendHubCommand(List<HubAction> actions, delay)``
 
 **Parameters:**
-    ``HubAction action`` - A HubAction object 
-    
-    ``List<HubAction> actions`` - A list of HubAction objects 
+    ``HubAction action`` - A HubAction object
+
+    ``List<HubAction> actions`` - A list of HubAction objects
 
 
     ``delay`` - An integer number representing milliseconds. This is the delay between commands when a list of HubAction objects are sent using ``List<HubAction> actions`` parameter. The default value of delay is 1000.
@@ -1705,7 +1836,7 @@ Sends a command to the Hub, with the details of the command encapsulated within 
     During the discovery phase of a LAN-connected device the following discovery command can be sent to the Hub.
 
 .. code-block:: groovy
-    
+
     // Send a single HubAction command to the Hub
     void ssdpDiscover() {
         sendHubCommand(new physicalgraph.device.HubAction("lan discovery urn:schemas-upnp-org:device:ZonePlayer:1", physicalgraph.device.Protocol.LAN))
@@ -1718,33 +1849,33 @@ Sends a command to the Hub, with the details of the command encapsulated within 
         actions.add(new physicalgraph.device.HubAction("lan discovery urn:samsung.com:device:RemoteControlReceiver:1", physicalgraph.device.Protocol.LAN))
         sendHubCommand(actions, 3000)
     }
-    
+
 ----
 
 sendLocationEvent()
 -------------------
 
-Sends a LOCATION event constructed from the specified properties. See the :ref:`event_ref` reference for a list of available properties. Other SmartApps can receive location events by subscribing to the location. Examples of exisisting location events include sunrise and sunset.
+Sends a LOCATION Event constructed from the specified properties. See the :ref:`event_ref` reference for a list of available properties. Other SmartApps can receive Location Events by subscribing to the Location. Examples of existing Location Events include sunrise and sunset.
 
 **Signature:**
     ``void sendLocationEvent(Map properties)``
 
 **Parameters:**
-    `Map`_ ``properties`` - The properties from which to create and send the event.
+    `Map`_ ``properties`` - The properties from which to create and send the Event.
 
     Here are the available properties:
 
     ================    ===========
     Property            Description
     ================    ===========
-    name (required)     `String`_ - The name of the event. Typically corresponds to an attribute name of a capability.
-    value (required)    The value of the event. The value is stored as a string, but you can pass numbers or other objects.
-    descriptionText     `String`_ - The description of this event. This appears in the mobile application activity for the device. If not specified, this will be created using the event name and value.
-    displayed           Pass ``true`` to display this event in the mobile application activity feed, ``false`` to not display. Defaults to ``true``.
-    linkText            `String`_ - Name of the event to show in the mobile application activity feed.
-    isStateChange       ``true`` if this event caused a device attribute to change state. Typically not used, since it will be set automatically.
+    name (required)     `String`_ - The name of the Event. Typically corresponds to an attribute name of a capability.
+    value (required)    The value of the Event. The value is stored as a string, but you can pass numbers or other objects.
+    descriptionText     `String`_ - The description of this Event. This appears in the mobile application activity for the device. If not specified, this will be created using the Event name and value.
+    displayed           Pass ``true`` to display this Event in the mobile application activity feed, ``false`` to not display. Defaults to ``true``.
+    linkText            `String`_ - Name of the Event to show in the mobile application activity feed.
+    isStateChange       ``true`` if this Event caused a device attribute to change state. Typically not used, since it will be set automatically.
     unit                `String`_ - a unit string, if desired. This will be used to create the ``descriptionText`` if it (the ``descriptionText`` option) is not specified.
-    data                A map of additional information to store with the event
+    data                A map of additional information to store with the Event
     ================    ===========
 
 **Returns:**
@@ -1966,7 +2097,7 @@ Sends the message as an SMS message to the specified phone number but does not d
 setLocationMode()
 -----------------
 
-Set the mode for this location.
+Set the Mode for this Location.
 
 **Signature:**
     ``void setLocationMode(String mode)``
@@ -1977,7 +2108,7 @@ Set the mode for this location.
 
 .. warning::
 
-    ``setMode()`` will raise an error if the specified mode does not exist for the location. You should verify the mode exists as in the example below.
+    ``setMode()`` will raise an error if the specified Mode does not exist for the Location. You should verify the Mode exists as in the example below.
 
 **See Also:** :ref:`location.setMode() <location_set_mode>`
 
@@ -2083,9 +2214,9 @@ Parses a comma-delimited string into a map.
 subscribe()
 -----------
 
-Subscribes to the various events for a device or location. The specified ``handlerMethod`` will be called when the event is fired.
+Subscribes to the various Events for a device or Location. The specified ``handlerMethod`` will be called when the Event is fired.
 
-All event handler methods will be passed an :ref:`event_ref` that represents the event causing the handler method to be called.
+All event handler methods will be passed an :ref:`event_ref` that represents the Event causing the handler method to be called.
 
 **Signature:**
     ``void subscribe(deviceOrDevices, String attributeName, handlerMethod)``
@@ -2105,11 +2236,11 @@ All event handler methods will be passed an :ref:`event_ref` that represents the
 
     `String`_ ``attributeNameAndValue`` - The specific attribute value to subscribe to, in the format ``"<attributeName>.<attributeValue>"``
 
-    ``handlerMethod`` - The method to call when the event is fired. Can be a `String`_ of the method name or the method reference itself.
+    ``handlerMethod`` - The method to call when the Event is fired. Can be a `String`_ of the method name or the method reference itself.
 
-    :ref:`location_ref` ``location`` - The location to subscribe to
+    :ref:`location_ref` ``location`` - The Location to subscribe to
 
-    ``app`` - Pass in the available ``app`` property in the SmartApp to subscribe to touch events in the app.
+    ``app`` - Pass in the available ``app`` property in the SmartApp to subscribe to touch Events in the app.
 
 **Returns:**
     void
@@ -2124,7 +2255,7 @@ All event handler methods will be passed an :ref:`event_ref` that represents the
             input "myswitches", "capability.switch", multiple: true
         }
     }
-    // subscribe to all state change events for ``contact`` attribute of a contact sensor
+    // subscribe to all state change Events for ``contact`` attribute of a contact sensor
     subscribe(mycontact, "contact", handlerMethod)
 
     // subscribe to all state changes for all switch devices configured
@@ -2133,10 +2264,10 @@ All event handler methods will be passed an :ref:`event_ref` that represents the
     // subscribe to the "open" event for the contact sensor - only when the state changes to "open" will the handlerMethod be called
     subscribe(mycontact, "contact.open", handlerMethod)
 
-    // subscribe to all state change events for the installed SmartApp's location
+    // subscribe to all state change Events for the installed SmartApp's Location
     subscribe(location, handlerMethod)
 
-    // subscribe to touch events for this app - handlerMethod called when app is touched
+    // subscribe to touch Events for this app - handlerMethod called when app is touched
     subscribe(app, appTouchMethod)
 
     // all event handler methods must accept an event parameter
@@ -2337,7 +2468,7 @@ Returns a `Date`_ of the next occurrence of the time specified in the input, rel
 timeZone()
 ----------
 
-Get a `TimeZone` object for the specified time value entered as a SmartApp preference. This will get the current time zone of the mobile app (not the hub location).
+Get a `TimeZone` object for the specified time value entered as a SmartApp preference. This will get the current time zone of the mobile app (not the Hub Location).
 
 **Signature:**
     ``TimeZone timeZone(String timePreferenceString)``

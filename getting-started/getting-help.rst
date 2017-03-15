@@ -7,7 +7,7 @@ In addition to this documentation, there are other ways to learn and get help de
 
 ----
 
-Developer Documentation
+Developer documentation
 -----------------------
 
 Use this documentation to learn about SmartThings development, as well as serve as a reference. The documentation is searchable, and can be viewed and downloaded in a variety of formats including PDF and EPUB (click on "Read the Docs" on the bottom left of the page to see the download options).
@@ -29,7 +29,7 @@ Many of the SmartThings staff frequents these forums as well. We'll chime in and
 
 .. _developer_support_form:
 
-SmartThings Developer Support
+SmartThings developer support
 -----------------------------
 
 While our `community <https://community.smartthings.com/>`__ is amazing and there are tons of awesome people there to support you, you may sometimes have more in-depth questions that our communtiy can't answer.
@@ -56,15 +56,4 @@ We recommend creating a `gist <https://gist.github.com/>`__ with a complete and 
 
     If you do not provide a simplified example that can be easily installed, our ability to quickly verify, diagnose, and address the issue may be limited.
 
-----
 
-.. _developer_discussions:
-
-Open Developer Discussions
---------------------------
-
-Every second Wednesday of the month at 2 PM PST, SmartThings holds an open call for SmartThings developers. The topics vary, but this is an opportunity for you to hear directly from the SmartThings staff, as well as to ask questions.
-
-You'll often get sneak peeks or additional insight not found anywhere else, so we encourage you to stop by.
-
-You can find out more information, including a link to the calendar invite, on our `developer site <https://developers.smartthings.com/developers/participate>`__. We'll also typically provide an agenda for the upcoming developer call on the community site (in the Groups and Events category).

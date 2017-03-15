@@ -1,7 +1,7 @@
 .. _smartapp_as_web_service_part_1:
 
-Web Services Tutorial - SmartApp
-================================
+Web Services Tutorial--SmartApp
+===============================
 
 This is the first part of two that will teach you how to build a Web Services SmartApp and a web application to illustrate the authorization flow.
 
@@ -27,13 +27,13 @@ Create a new SmartApp
 Create a new SmartApp in the IDE. Fill in the required fields, and make sure to click on *Enable OAuth in SmartApp* to receive an auto-generated client ID and secret.
 
 Make sure to specify the redirect URI as this will be used to validate the authorization code request.
-For the purposes of this tutorial, simply type in ``http://localhost:4567/oauth/callback``
+For the purposes of this tutorial, simply type in ``http://localhost:4567/oauth/callback``.
 
 Note the Client ID and secret - they'll be used later (should you forget, you can get them by viewing the "App Settings" in the IDE).
 
 ----
 
-Define Preferences
+Define preferences
 ------------------
 
 SmartApps declare preferences metadata that is used at installation and configuration time, to allow the user to control what devices the SmartApp will have access to.
@@ -54,13 +54,13 @@ The preferences definition should look like this:
   }
 
 Also ensure that you have an ``installed()`` and ``updated()`` method defined (this should be created by default when creating a SmartApp).
-They can remain empty, since we are not subscribing to any device events in this example.
+They can remain empty, since we are not subscribing to any device Events in this example.
 
 You can learn more about Web Services SmartApp preferences :ref:`here <web_services_preferences>`.
 
 ----
 
-Specify Endpoints
+Specify endpoints
 -----------------
 
 The ``mappings`` declaration allows developers to expose HTTP endpoints, and map the various supported HTTP operations to an associated handler.
@@ -103,7 +103,7 @@ See the :ref:`web_services_mapping_endpoints` documentation for more information
 
 ----
 
-GET Switch Information
+GET switch information
 ----------------------
 
 Now that we've defined our endpoints, we need to handle the requests in the handler methods we stubbed in above.
@@ -129,7 +129,7 @@ See the :ref:`smartapp_web_services_response` documentation for more information
 
 ----
 
-UPDATE the Switches
+UPDATE the switches
 -------------------
 
 We also need to handle a PUT request to the ``/switches/:command`` endpoint. ``/switches/on`` will turn the switches on, and ``/switches/off`` will turn the switches off.
@@ -166,7 +166,7 @@ You can learn more about working with requests :ref:`here <webservices_smartapp_
 Self-publish the SmartApp
 -------------------------
 
-Publish the app for yourself, by clicking on the "Publish" button and selecting "For Me".
+Publish the app for yourself, by clicking on the *Publish* button and selecting *For Me*.
 
 ----
 
@@ -175,30 +175,30 @@ Publish the app for yourself, by clicking on the "Publish" button and selecting 
 Run the SmartApp in the Simulator
 ---------------------------------
 
-Using the simulator, we can quickly test our Web Services SmartApp.
+Using the Simulator, we can quickly test our Web Services SmartApp.
 
-Click the *Install* button in the simulator, select a Location to install the SmartApp into, and select a switch.
+Click the *Install* button in the Simulator, select a Location to install the SmartApp into, and select a switch.
 
-Note that in the lower right of the simulator there is an API token and an API endpoint URL:
+Note that in the lower right of the Simulator there is an API token and an API endpoint URL:
 
 .. image:: ../img/smartapps/web-services/web-services-smartapp-simulator-install.png
 
 .. important::
 
-    The base URL for of your SmartApp's API endpoint will vary depending on the location being installed into.
+    The base URL for of your SmartApp's API endpoint will vary depending on the Location being installed into.
 
-    **Be sure to copy the URL from the simulator to ensure you have the correct URL!**
+    **Be sure to copy the URL from the Simulator to ensure you have the correct URL!**
 
 We can use these to test making requests to our SmartApp.
 
 ----
 
-Make API Calls to the SmartApp
+Make API calls to the SmartApp
 ------------------------------
 
 Using whatever tool you prefer for making web requests (this example will use curl, but `Apigee <http://apigee.com>`__ is a good UI-based tool for making requests), we will call one of our SmartApp endpoints.
 
-From the simulator, grab the API endpoint. It will look something like this::
+From the Simulator, grab the API endpoint. It will look something like this::
 
   https://<BASE-URL>/api/smartapps/installations/158ef595-3695-49ab-acc1-80e93288c0c8
 
@@ -206,9 +206,9 @@ Your installation will have a different, unique URL.
 
 .. important::
 
-    The base URL for of your SmartApp's API endpoint will vary depending on the location being installed into.
+    The base URL for of your SmartApp's API endpoint will vary depending on the Location being installed into.
 
-    **Be sure to copy the URL from the simulator to ensure you have the correct URL!**
+    **Be sure to copy the URL from the Simulator to ensure you have the correct URL!**
 
 To get information about the switch, we will call the /switch endpoint using a GET request.
 You'll need to substitute your unique endpoint and API key.
@@ -236,7 +236,7 @@ Try turning the switch on and off, and then using curl to get the status, to see
 Uninstall the SmartApp
 ----------------------
 
-Finally, uninstall the SmartApp using the *Uninstall* button in the IDE simulator.
+Finally, uninstall the SmartApp using the *Uninstall* button in the IDE Simulator.
 
 ----
 
@@ -244,6 +244,6 @@ Summary
 -------
 
 In this tutorial, you learned how to create a SmartApp that exposes endpoints to get information about, and control, a device.
-You also learned how to install the SmartApp in the simulator, and then make API calls to the endpoint.
+You also learned how to install the SmartApp in the Simulator, and then make API calls to the endpoint.
 
-In the next part of this tutorial, we'll look at how a external application might interact with SmartThings using the OAuth2 flow (instead of simply using the simulator and its generated access token).
+In the next part of this tutorial, we'll look at how a external application might interact with SmartThings using the OAuth2 flow (instead of simply using the Simulator and its generated access token).

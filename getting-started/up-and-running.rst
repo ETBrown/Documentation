@@ -5,9 +5,9 @@ Up and Running
 
 SmartThings offers a rich toolset to develop, test, and publish custom code.
 
-Don't have a SmartThings Hub or any devices yet? Carry on! You can still create an account and even develop without any hardware, by using our online IDE and simulator.
+Don't have a SmartThings Hub or any devices yet? Carry on! You can still create an account and even develop without any hardware, by using our online IDE and Simulator.
 
-Of course, you'll want to have the hardware sooner than later, but you can start developing with SmartThings with nothing more than the free SmartThings mobile app, a web browser, and an Internet connection.
+Of course, you'll want to have the hardware sooner than later, but you can start developing with SmartThings with nothing more than the free SmartThings mobile app, a web browser, and an internet connection.
 
 ----
 
@@ -26,7 +26,7 @@ Explore
 
 The :ref:`tools_ide` guide discusses the developer tools in more detail, but for now, let's look at a few key features to get you comfortable.
 
-Account Management
+Account management
 ^^^^^^^^^^^^^^^^^^
 
 You can use the tools available to view and manage your Locations, Hubs, and Devices, as well as view a live log of your SmartThings.
@@ -42,7 +42,7 @@ As a new SmartThings developer, you won't have any SmartApps or Device Handlers 
 
 ----
 
-Next Steps
+Next steps
 ----------
 
 Now that you know what the SmartThings developer platform offers, you can dive in to the fun stuff.
